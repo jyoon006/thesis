@@ -59,6 +59,9 @@ var SpotView = React.createClass({
           map.setOptions({zoomControl: false});
           marker.setIcon('/img/map/pin_test.png');
         });
+        var durationTime = timeController.msToDuration(Number(data.end));
+        console.log('durationTime', durationTime);
+        context.setState({end: durationTime});
       },
       error: function (error) {
         console.log("ERROR: ", error);
@@ -100,7 +103,6 @@ var SpotView = React.createClass({
   render: function() {
 
     var chatContainerClass = "chat-card-container";
-
     return (
       <div className="spot-container">
         <div className="create-map-view-container">
@@ -114,9 +116,10 @@ var SpotView = React.createClass({
             <span className='spot-name'>{this.state.spot.name}</span>
           </div>
           <h3>@{" " + timeController.msToTime(this.state.spot.start)}</h3>
+          <p style={{'font-style': 'italic', 'font-size': '14px'}}>{this.state.end}</p>
           <h4>created by: <a href={this.state.creatorId} className="spot-view-creatorid">{this.state.spot.creator}</a></h4>
-          <p>description: {this.state.spot.description}</p>
-          <p>address: {this.state.spot.address}</p>
+          <p>{this.state.spot.description}</p>
+          <p>{this.state.spot.address}</p>
           <input type="button" value="show chat" onClick={this.toggleChat} />
         </div>
         <div className={this.state.shareClass} onClick={this.toggleShare}>
