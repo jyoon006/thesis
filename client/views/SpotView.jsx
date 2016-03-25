@@ -60,7 +60,6 @@ var SpotView = React.createClass({
           marker.setIcon('/img/map/pin_test.png');
         });
         var durationTime = timeController.msToDuration(Number(data.end));
-        console.log('durationTime', durationTime);
         context.setState({end: durationTime});
       },
       error: function (error) {
